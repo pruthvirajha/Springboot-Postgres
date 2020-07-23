@@ -7,7 +7,11 @@ public class Address {
     private String street;
     private String city;
     private List<String> pincodes;
+    private PhoneNumbers phoneNumbers;
 
+    public PhoneNumbers getPhoneNumbers() {
+        return phoneNumbers;
+    }
 
     public String getHouseNo() {
         return houseNo;

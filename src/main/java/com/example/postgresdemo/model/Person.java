@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
