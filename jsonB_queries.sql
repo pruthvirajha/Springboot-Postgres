@@ -21,7 +21,13 @@ SELECT address->'phoneNumbers'->'mobileNumber'  from person where id =3;
 
 select * from person where address->'phoneNumbers'->'mobileNumber' ? '9893434934'
 
-CREATE INDEX addressIndex ON person USING gin (address);
+-- jsonb_ops indexing
+CREATE INDEX i_city ON person USING GIN ((address -> 'city'));
+SELECT address->'city', address->'phoneNumbers' FROM person where address->'city' ? 'California';
 
-select *
-from person where age = 25;
+-- jsonb_path_ops indexing
+CREATE INDEX i_city2 ON person USING GIN ((address) jsonb_path_ops);
+
+SELECT address->'city', address->'phoneNumbers' FROM person where address @@ '$.city == "California"';
+
+SELECT address->'city', address->'phoneNumbers' FROM person where address @@ '$.phoneNumbers.mobileNumber == "phone100"';
